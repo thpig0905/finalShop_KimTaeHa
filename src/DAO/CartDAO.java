@@ -1,35 +1,37 @@
 package DAO;
 
+import java.util.ArrayList;
+import java.util.List;
 import DTO.Cart;
 import DTO.Item;
-import DTO.Member;
-
-import java.util.List;
 
 public class CartDAO {
-    List<Cart> carts;
-
-    // CartDAO 생성자
+    public List<Cart> cartList;
     private CartDAO() {}
     private static CartDAO instance = new CartDAO();
     public static CartDAO getInstance() { return instance; }
 
-    public void cartSortByMember(String id) {
-        int counter = 0;
-        int totalPrice = 0;
-        for (Cart cart : carts) {
-            if (cart.getId().equals(id)) {
-                System.out.printf("[ %s ] \t %s \t ( %d원) \t %d개\n"
-                        , cart.getCartNum(), cart.getItemName(), cart.getItemPrice(), cart.getItemCnt());
-                counter++;
-                totalPrice += cart.getItemPrice() * cart.getItemCnt();
+    public void addItemToCart(String id, Item item) {
+        int cnt = 0;
+        for (Cart cart : cartList) {
+            if (cart.getId().equals(id) && cart.getItemNum() == item.getItemNum()){
+                cnt = cart.getItemCnt();
             }
         }
-        System.out.printf("총 %d 개 ( 총 %d 원 )", counter, totalPrice);
+        Cart cart = new Cart(id, item.getItemNum(), cnt);
+        cartList.add(cart);
     }
 
-    public void addItemToCart(Item item, String id){
-        Cart cart = new Cart(id, item.getItemName(), item.getPrice(), Integer.parseInt(item.getItemNum()));
-        carts.add(cart);
+    public void cartSortByMember(String id) {
+        List<Cart> temp = new ArrayList<>();
+        for (Cart cart : cartList) {
+            if (cart.getId().equals(id)) {
+                temp.add(cart);
+            }
+        }
+        System.out.println("=====[ 장바구니 목록 ]=====");
+        for (Cart cart : temp) {
+            System.out.println(cart);
+        }
     }
 }

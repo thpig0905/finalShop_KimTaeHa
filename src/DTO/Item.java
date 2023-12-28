@@ -1,53 +1,42 @@
 package DTO;
 
 public class Item {
-    // Item 번호
     private static int num;
-
-    // Item 정보를 저장할 변수
     private int itemNum;
     private String categoryName;
     private String itemName;
     private int price;
     private int count;
 
-    // Item 정보를 반환하는 매소드
-    public int getNum(){ return num; }
-    public String getItemNum() { return itemName; }
-    public String getCategory() { return categoryName; }
+    public int getItemNum() { return itemNum; }
+    public String getCategoryName() { return categoryName; }
     public String getItemName() { return itemName; }
     public int getPrice() { return price; }
-    public String getName() { return itemName; }
     public int getCount() { return count; }
+    public void setCount(int count) { this.count = count; }
 
-    // Item 정보를 수정하는 매소드
-    public void setNum(int num){ this.itemNum = num; }
-    public void setItemNum(String itemNum) { this.itemName = itemNum; }
-    public void setCategory(String category) { this.categoryName = category; }
-    public void setItemName(String itemName) { this.itemName = itemName; }
-    public void setPrice(int price) { this.price = price; }
 
-    // Item 생성자
-    public Item (int num, int itemNum, String category, String itemName, int price, int count){
-        this.num = num;
+    public Item(int itemNum, String categoryName, String itemName, int price) {
         this.itemNum = itemNum;
-        this.categoryName = category;
+        this.categoryName = categoryName;
         this.itemName = itemName;
         this.price = price;
-        this.count = count;
+        this.count = 0;
+        num++;
     }
 
-    public Item (String category, String itemName, int price){
-        this.itemNum = num++;
-        this.categoryName = category;
+    public Item(String itemName, int price, String categoryName) {
         this.itemName = itemName;
         this.price = price;
+        this.categoryName = categoryName;
+        this.itemNum = ++num;
+        this.count = 0;
+        num++;
     }
-
-    // Item 정보를 출력하는 매소드
-    public String toString() {
-        return String.format("%d,%d,%s,%s,%d,%d"
-                , this.num, this.itemNum, this.categoryName, this.itemName, this.price, this.count);
+    public String toSaveString(){
+        return String.format("%d/%s/%s/%d/%d\n", itemNum, categoryName, itemName, price, count);
     }
-
+    public String toString(){
+        return String.format("[ 상품 번호 : %d ] [ 카테고리 : %s ] [ 상품 이름 : %s ] [ 상품 가격 : %d ] [ 판매 수량 : %d ]", itemNum, categoryName, itemName, price, count);
+    }
 }

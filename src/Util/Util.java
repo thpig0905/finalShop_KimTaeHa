@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Util {
-
     public static int getInt(String msg, int min, int max) {
         Scanner scanner = new Scanner(System.in);
         int value = 0;
