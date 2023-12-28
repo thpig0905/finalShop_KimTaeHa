@@ -22,9 +22,9 @@ public class Mall_Main implements MenuCommand {
             mallController.setNext(null);
         }
         else if (sel == 1) {
-            mallController.setNext("MallJoin");
+            mallController.setNext("Mall_Join");
         } else if (sel == 2) {
-            mallController.setNext("MallLogin");
+            mallController.setNext("Mall_Login");
         }
 
         return false;

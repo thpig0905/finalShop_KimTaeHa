@@ -7,7 +7,7 @@ import DTO.Item;
 import Mall.MenuCommand;
 import Util.Util;
 
-public class Member_Shoping implements MenuCommand {
+public class Member_Shopping implements MenuCommand {
     MallController mallController = MallController.getInstance();
     int sel;
     @Override

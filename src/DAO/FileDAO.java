@@ -107,7 +107,12 @@ public class FileDAO {
         }
     }
 
-    public void loadAllFile(BoardDAO boardDAO, CartDAO cartDAO, ItemDAO itemDAO, MemberDAO memberDAO) {
+    public void loadAllFile() {
+        BoardDAO boardDAO = BoardDAO.getInstance();
+        CartDAO cartDAO = CartDAO.getInstance();
+        ItemDAO itemDAO = ItemDAO.getInstance();
+        MemberDAO memberDAO = MemberDAO.getInstance();
+
         boardDAO.boards = loadFile(FileName.BOARD);
         cartDAO.carts = loadFile(FileName.CART);
         itemDAO.items = loadFile(FileName.ITEM);
