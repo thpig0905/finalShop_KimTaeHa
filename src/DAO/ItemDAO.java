@@ -2,6 +2,8 @@ package DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import DTO.Cart;
 import DTO.Item;
 import Util.Util;
 
@@ -61,6 +63,12 @@ public class ItemDAO {
             return;
         }
         itemList.remove(item);
+        CartDAO cartDAO = CartDAO.getInstance();
+        for (Cart cart : cartDAO.cartList) {
+            if (cart.getItemNum() == item.getItemNum()) {
+                cartDAO.cartList.remove(cart);
+            }
+        }
     }
     public void printItems() {
         List<Item> temp = new ArrayList<>(itemList);
